@@ -17,14 +17,6 @@ export class UsersService {
   }
 
   async findAll() {
-    // const users = await this.user_repository.create({
-    //   email: 'erfan@gmail.com',
-    //   firstName: 'erfan',
-    //   lastName: 'pirikhah',
-    //   password: '123456',
-    // });
-
-    // this.user_repository.save(users);
     return await this.user_repository.find();
   }
 
@@ -38,5 +30,16 @@ export class UsersService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  async createUser(createUser: CreateUserDto) {
+    const user = await this.user_repository.create(createUser);
+    this.user_repository.save(user);
+    return user;
+  }
+  async findOneByEmail(email: string) {
+    return await this.user_repository.findOne({
+      where: { email: email },
+    });
   }
 }
