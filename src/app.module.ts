@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { LoggerMiddlewareMiddleware } from './logger-middleware/logger-middleware.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth-/auth-.module';
 import { AuthModule } from './auth/auth.module';
+import { ArticleModule } from './article/article.module';
 
 @Module({
   imports: [
@@ -17,10 +17,13 @@ import { AuthModule } from './auth/auth.module';
       username: 'postgres',
       password: 'H@mrah8339!',
       database: 'nest',
-      entities: [__dirname + '/**/*.entities{.ts,.js}'],
+      entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
       synchronize: true,
+
     }),
     AuthModule,
+
+    ArticleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
