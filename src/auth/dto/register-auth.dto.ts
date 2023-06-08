@@ -3,4 +3,6 @@ export class RegisterAuthDto {
   lastName: string;
   email: string;
   password: string;
+  bio:string;
+  image:string
 }
