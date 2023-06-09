@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import UserEntity from './entities/user.entity';
+import { JwtAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
 
 @ApiTags('Users')
 @Controller('users')
@@ -27,6 +29,7 @@ export class UsersController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   @ApiResponse({ status: 201, description: 'Get All Users' , type : [UserEntity]})
   @ApiResponse({ status: 400, description: 'Something is Wrong , Please try Agin .'})
   @ApiResponse({ status: 403, description: 'Forbidden.'})

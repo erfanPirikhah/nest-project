@@ -15,7 +15,7 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly userService: UsersService,
-    // private readonly jwtService : JwtService
+    private readonly jwtService : JwtService
   ) {}
 
   async register(registerAuthDto: RegisterAuthDto) {
@@ -30,11 +30,11 @@ export class AuthService {
 
     if(!user) throw new HttpException("The user wasn't found",400);
 
-    // const accessToken = this.jwtService.sign({
-    //   sub : user.id,
-    //   email: user.email
-    // })
+    const accessToken = this.jwtService.sign({
+      sub : user.id,
+      email: user.email
+    })
 
-    // return accessToken
+    return {accessToken}
   }
 }
