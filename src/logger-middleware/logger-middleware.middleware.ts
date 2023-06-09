@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 
 @Injectable()
 export class LoggerMiddlewareMiddleware implements NestMiddleware {
-  private logger = new Logger('HTTp');
+  private logger = new Logger('HTTP');
   use(req: Request, res: Response, next: () => void) {
     const { ip, baseUrl, method } = req;
     const userAgent = req.get('user-agent') || '';
